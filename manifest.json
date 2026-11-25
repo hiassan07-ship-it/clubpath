@@ -1,0 +1,9 @@
+{
+  "name": "ClubPath — Daily Football Career Game",
+  "short_name": "ClubPath",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0b1120",
+  "theme_color": "#0b1120",
+  "description": "Guess the mystery footballer from their club-by-club career path in 6 tries."
+}

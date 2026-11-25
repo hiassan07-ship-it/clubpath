@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hiassan07-ship-it.github.io/clubpath/sitemap.xml

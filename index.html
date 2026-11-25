@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ClubPath — Daily Football Career Guessing Game</title>
+  <meta name="description" content="Guess the mystery footballer from their club-by-club career path in 6 tries. A free daily football Wordle-style trivia game plus unlimited mode." />
+  <meta name="keywords" content="daily football game, guess the footballer, football career path game, soccer wordle, football trivia daily, clubpath" />
+  <meta property="og:title" content="ClubPath — Guess the Footballer from Their Career Path" />
+  <meta property="og:description" content="Can you name today's mystery footballer from their clubs and years? Play the free daily puzzle + unlimited mode." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo-dot">⚽</span>
+        <div>
+          <h1>ClubPath</h1>
+          <p class="subtitle">Daily Football Career Game</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="modeToggleBtn" class="pill-btn" title="Switch between Daily and Unlimited mode">Unlimited</button>
+        <button id="statsBtn" class="icon-btn" aria-label="Stats" title="Stats">📊</button>
+        <button id="helpBtn" class="icon-btn" aria-label="How to play" title="How to play">?</button>
+      </div>
+    </header>
+
+    <div class="status-strip">
+      <span id="puzzleBadge" class="badge">Daily #1</span>
+      <span id="streakBadge" class="badge muted">🔥 Streak: 0</span>
+      <span id="attemptsBadge" class="badge accent">6 tries left</span>
+    </div>
+
+    <main class="card">
+      <div class="card-header">
+        <h2>Career Path</h2>
+        <span id="eraTag" class="era-tag">Mystery Player</span>
+      </div>
+
+      <ol id="careerList" class="career-list" aria-label="Player career timeline"></ol>
+
+      <div id="hintsBox" class="hints-box">
+        <div class="hint-chip" id="hintConfed"><span class="hint-label">Region</span><span class="hint-val">Unlocks after 2 tries</span></div>
+        <div class="hint-chip" id="hintPos"><span class="hint-label">Position</span><span class="hint-val">Unlocks after 3 tries</span></div>
+        <div class="hint-chip" id="hintNat"><span class="hint-label">Nation</span><span class="hint-val">Unlocks after 4 tries</span></div>
+        <div class="hint-chip" id="hintInit"><span class="hint-label">Initials</span><span class="hint-val">Unlocks after 5 tries</span></div>
+      </div>
+
+      <div id="guessSection" class="guess-section">
+        <div class="search-wrap">
+          <input
+            id="playerInput"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Type a footballer's name..."
+            aria-label="Guess a footballer"
+          />
+          <button id="submitGuessBtn" class="primary-btn">Guess</button>
+          <ul id="suggestions" class="suggestions hidden" role="listbox"></ul>
+        </div>
+        <div class="quick-actions">
+          <button id="skipBtn" class="ghost-btn">Skip (+1 hint)</button>
+        </div>
+      </div>
+
+      <ul id="guessHistory" class="guess-history"></ul>
+
+      <div id="resultPanel" class="result-panel hidden">
+        <div id="resultTitle" class="result-title"></div>
+        <p id="resultSub" class="result-sub"></p>
+        <pre id="sharePreview" class="share-preview"></pre>
+        <div class="result-buttons">
+          <button id="shareBtn" class="primary-btn">Copy Result Grid</button>
+          <button id="nextUnlimitedBtn" class="secondary-btn">Play Another (Unlimited)</button>
+        </div>
+        <p id="countdownText" class="countdown"></p>
+      </div>
+    </main>
+
+    <!-- Monetization slot: drop AdSense / Ezoic / Carbon / sponsor banner code here once approved -->
+    <aside id="sponsorSlot" class="sponsor-slot" aria-label="Support">
+      <div class="sponsor-inner">
+        <span>Enjoying ClubPath?</span>
+        <a id="supportLink" href="#support" class="support-link" target="_blank" rel="noopener">☕ Support the game</a>
+      </div>
+    </aside>
+
+    <section class="seo-about">
+      <h3>How ClubPath Works</h3>
+      <p>
+        Every day at midnight UTC, ClubPath features a new footballer's senior club career timeline — clubs, years, and loan spells.
+        You get 6 guesses to name the player. Each miss unlocks a new clue: confederation, position, nationality, and initials.
+        Finished today's puzzle? Switch to <strong>Unlimited Mode</strong> to test your football knowledge across 100+ legends and modern stars.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <span>ClubPath • Built for football fans worldwide</span>
+    </footer>
+  </div>
+
+  <!-- Stats Modal -->
+  <div id="statsModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Your Daily Stats</h3>
+        <button class="close-modal" data-close="statsModal">✕</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><strong id="stPlayed">0</strong><span>Played</span></div>
+        <div class="stat-box"><strong id="stWinPct">0%</strong><span>Win %</span></div>
+        <div class="stat-box"><strong id="stStreak">0</strong><span>Streak</span></div>
+        <div class="stat-box"><strong id="stBest">0</strong><span>Best</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>How to Play</h3>
+        <button class="close-modal" data-close="helpModal">✕</button>
+      </div>
+      <ul class="help-list">
+        <li>Read the mystery footballer's senior club career from top to bottom.</li>
+        <li>You have <strong>6 tries</strong> to guess the player.</li>
+        <li>Each wrong guess (or Skip) reveals extra clues: <strong>Region → Position → Nation → Initials</strong>.</li>
+        <li>A new Daily player drops every day at 00:00 UTC. Tap <strong>Unlimited</strong> anytime to keep playing.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="players.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
