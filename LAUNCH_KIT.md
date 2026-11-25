@@ -2,13 +2,13 @@
 
 Live URL: `https://hiassan07-ship-it.github.io/clubpath/`
 
-## 1. Free Daily-Game Directories (Submit once -> permanent daily traffic)
+## 1. Verified Free Daily-Game Directories (Submit once -> permanent daily traffic)
 These directories send steady, bookmark-habit players every month for free:
-1. **The Dles** — `https://dles.aukspot.com/` (has a "Suggest a dle" form — one of the biggest sources of daily-game players!)
-2. **DleGames / Daily Games Lists** — search "submit daily game" on `dlegames.com`, `gamedle`, `wordle.games`, `daily-games.com`
-3. **Product Hunt** — `https://www.producthunt.com/` (launch as "ClubPath — Daily Football Career Guessing Game")
-4. **AlternativeTo** — list as alternative to FootyTicTacToe / Missing 11 / Career Path Challenge
-5. **Hacker News (Show HN)** — `Show HN: ClubPath – Guess the footballer from their club career path`
+1. **The Dles (800+ daily games)** — `https://dles.aukspot.com/` · Submit via GitHub Issue/PR on `https://github.com/aukspot/dles` (we can open this directly via `gh` once you give the OK)
+2. **Listdle** — `https://listdle.com/` (dedicated sports/trivia daily guessing directory)
+3. **Adory Vo's Web-Based Games List** — `https://adoryvo.github.io/lists` (accepts GitHub issue submissions)
+4. **Wordles of the World** — GitLab collaborative directory of daily guessing games
+5. **Product Hunt** — `https://www.producthunt.com/` & **Hacker News (Show HN)** — `Show HN: ClubPath – Guess the footballer from their club career path`
 
 ## 2. Non-Spammy Community Posts (Copy-Paste Ready)
 Per Reddit rules, lead with the story/game, keep it genuine:
